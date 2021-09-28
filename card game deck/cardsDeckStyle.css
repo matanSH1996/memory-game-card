@@ -27,10 +27,7 @@ body{
 }
 
 .back-of-card{
-    z-index: 1;
     width: 4rem;
     height: 8rem;
-    cursor: pointer;
-    transition: transform 1s;
     transform: rotateY(180deg);
 }
