@@ -1,0 +1,36 @@
+body{
+    margin: 0px;
+}
+
+.cards-area{
+    display: flex;
+    flex-wrap: wrap ;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.cards-container{
+    margin: 0.5rem;
+}
+
+.cards-container.flippedCard {
+    transform: rotateY(180deg);
+}
+
+.front-of-card{
+    position: absolute;
+    width: 4rem;
+    height: 8rem;
+    z-index: -1;
+    transform-style: preserve-3d;
+}
+
+.back-of-card{
+    z-index: 1;
+    width: 4rem;
+    height: 8rem;
+    cursor: pointer;
+    transition: transform 1s;
+    transform: rotateY(180deg);
+}
