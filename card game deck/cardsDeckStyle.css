@@ -12,22 +12,25 @@ body{
 
 .cards-container{
     margin: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s;
 }
 
 .cards-container.flippedCard {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg);   
 }
 
 .front-of-card{
-    position: absolute;
+    position:absolute;
     width: 4rem;
     height: 8rem;
-    z-index: -1;
-    transform-style: preserve-3d;
+    transform: rotateY(180deg);
 }
 
 .back-of-card{
     width: 4rem;
     height: 8rem;
-    transform: rotateY(180deg);
+    backface-visibility: hidden;
 }
