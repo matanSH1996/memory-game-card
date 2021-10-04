@@ -34,3 +34,13 @@ body{
     height: 8rem;
     backface-visibility: hidden;
 }
+
+.timer{
+    background-color: black;
+    color: #fff;
+    font-size: 50px;
+    text-align: center;
+}
+
+
+
