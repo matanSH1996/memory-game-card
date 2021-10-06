@@ -4,6 +4,17 @@
 //   card.classList.toggle('flippedCard');
 // });
 
+window.addEventListener('load',() => {
+
+  const params = (new URL(document.location)).searchParams;
+  const name = params.get('nameofuser');
+  const mail = params.get('email');
+
+  document.getElementById('writename').innerHTML = name;
+  document.getElementById('writemail').innerHTML = mail;
+
+} )
+
 function startTimer(duration, display) {
   let timer = duration, minutes, seconds;
   setInterval(function () {
