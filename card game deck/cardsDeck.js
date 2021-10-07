@@ -37,3 +37,24 @@ window.onload = function () {
       display = document.querySelector('#time');
   startTimer(fiveMinutes, display);
 };
+
+
+let popup = document.getElementById('popup');
+  window.addEventListener('load', (event) =>{
+    setTimeout( () =>{
+      popup.style.display = 'block';
+  }, 5000);
+  });
+
+  Input = document.getElementsByClassName('text');
+let user = document.getElementById('popup').addEventListener('load', Data);
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const first_name = urlParams.get('writename')
+
+if(urlParams.has('writename'))
+first_name = urlParams.get('first_name')
+
+let name_span = document.getElementById('first_name');
+name_span.innerText = first_name;
+
