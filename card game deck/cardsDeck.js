@@ -13,6 +13,9 @@ window.addEventListener('load',() => {
 
   document.getElementById('writename').innerHTML = name;
   document.getElementById('writemail').innerHTML = mail;
+  
+  localStorage.setItem("username", name);
+  localStorage.setItem("usermail", mail);
 
 } )
 
@@ -45,6 +48,8 @@ let popup = document.getElementById('popup');
     setTimeout( () =>{
       popup.style.display = 'block';
   }, 5000);
+  document.getElementById("name_of_user").innerHTML = localStorage.getItem("username");
+  document.getElementById("mail_of_user").innerHTML = localStorage.getItem("usermail");
   });
 
   Input = document.getElementsByClassName('text');
