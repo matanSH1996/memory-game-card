@@ -1,9 +1,53 @@
-const cards = document.querySelectorAll('.cards-container');
-for (let card of cards) {
-  card.addEventListener('click', (event) => {
-    card.classList.toggle('flippedCard');
-  });
+const cards = document.getElementsByClassName('cards-container');
+const test = Array.from(cards)
+let flag = 0;
+let score = 0
+let nope = 0;
+test.forEach(item => {
+  item.addEventListener('click', eventParams)
+})
+
+function eventParams (event) {
+  let fliped = event.target.parentElement
+  fliped.classList.toggle('flippedCard');
+  fliped.classList.toggle('isFlipped');
+  fliped.data
+
+  game();
 }
+
+function game () {
+  let check = document.getElementsByClassName('isFlipped')
+  let checkArr = Array.from(check)
+  for(let i = 0; i < checkArr.length; i++){
+    for(let j = i + 1; j < checkArr.length; j++){
+      if(checkArr[i].children[0].src == checkArr[j].children[0].src && checkArr[i].classList.contains('isFlipped') && checkArr[j].classList.contains('isFlipped'))  {
+        flag ++
+        console.log('yes')
+        if(flag == 1){
+          console.log(checkArr[i])
+          checkArr[i].removeEventListener('click', eventParams);
+          checkArr[j].removeEventListener('click', eventParams)
+          checkArr[i].classList.toggle('isFlipped');
+          checkArr[j].classList.toggle('isFlipped');
+          score ++
+          flag = 0
+        }
+      } else nope ++
+    }
+    if(nope == 1) {
+      setTimeout(() => {
+        checkArr.forEach(item => {
+          item.classList.toggle('flippedCard')
+          item.classList.toggle('isFlipped');
+        })
+      }, 1000);
+      nope = 0
+    }
+  }
+  myFunction()
+}
+
 
 window.addEventListener('load',() => {
 
@@ -44,25 +88,16 @@ window.onload = function () {
   startTimer(fiveMinutes, display);
 };
 
-
-let popup = document.getElementById('popup');
-  window.addEventListener('load', (event) =>{
-    setTimeout( () =>{
-      popup.style.display = 'block';
-  }, 5000);
-  document.getElementById("name_of_user").innerHTML = localStorage.getItem("username");
-  document.getElementById("mail_of_user").innerHTML = localStorage.getItem("usermail");
-  });
-
-  Input = document.getElementsByClassName('text');
-let user = document.getElementById('popup').addEventListener('load', Data);
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const first_name = urlParams.get('writename')
-
-if(urlParams.has('writename'))
-first_name = urlParams.get('first_name')
-
-let name_span = document.getElementById('first_name');
-name_span.innerText = first_name;
-
+function myFunction() {
+  let popup = document.getElementById("popup");
+  if(score == 6){
+    popup.style.display = 'block';
+    document.getElementById("name_of_user").innerHTML = localStorage.getItem("username");
+    document.getElementById("mail_of_user").innerHTML = localStorage.getItem("usermail");
+    document.getElementById("time").innerHTML = localStorage.getItem("timer");
+    let closePopup = document.querySelector("#close")
+    closePopup.addEventListener('click', (event) => {
+    popup.style.display = 'none';
+    })
+  }
+};

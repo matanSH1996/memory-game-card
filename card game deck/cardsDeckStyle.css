@@ -1,5 +1,11 @@
 body{
     margin: 0px;
+    font-size: 14px;
+}
+
+main{
+    background-image: url("https://t3.ftcdn.net/jpg/01/59/07/92/360_F_159079250_3oo6EuNF6gPjNe3ABeDhMjzzEDlGVdjO.jpg");
+    background-size: cover;
 }
 
 .cards-area{
@@ -26,7 +32,10 @@ body{
     position:absolute;
     width: 4rem;
     height: 8rem;
-    transform: rotateY(180deg);
+}
+
+.back-of-card{
+    transform: rotateZ(180deg);
 }
 
 .back-of-card{
@@ -36,21 +45,21 @@ body{
 }
 
 .timer{
-    background-color: black;
+    background-color:rgb(15, 121, 163) ;
     color: #fff;
-    font-size: 50px;
+    font-size: 3.5rem;
     text-align: center;
 }
 
 #popup #popup-child{
-    width: 500px;
-    height: 500px;
+    width: 35.7rem;
+    height: 35.7rem;
     position: fixed;
-    top: calc(50% - 250px);
-    left: calc(50% - 250px);
+    top: calc(50% - 17.8rem);
+    left: calc(50% - 17.8rem);
     text-align: center;
     z-index: 1;
-    background-image: url("https://t3.ftcdn.net/jpg/01/59/07/92/360_F_159079250_3oo6EuNF6gPjNe3ABeDhMjzzEDlGVdjO.jpg");
+    background-image: url("https://media.istockphoto.com/photos/royal-flush-and-poker-chips-picture-id1182872570?k=20&m=1182872570&s=612x612&w=0&h=d945CSQrpj2v1Wqy2XZVBL0TqalcNKaiK3FQXYb7vBs=");
     background-size: cover;
 }
 
@@ -66,15 +75,15 @@ body{
 }
 
 #button{
-    background-color: chocolate;
-    color: #04a2ad;
-    border-radius: 5px;
-    width: 100px;
-    height: 40px;
-    font-size: 18px;
+    background-color: rgb(210, 30, 60);
+    color: #fff;
+    border-radius: 0.4rem;
+    width: 12.8rem;
+    height: 3.6rem;
+    font-size: 2rem;
     position: fixed;
-    left: 46%;
-    top: 400px;
+    right: 42%;
+    top: 22rem;
     cursor: pointer;
 }
 
@@ -83,6 +92,25 @@ body{
 }
 
 .user{
-    color:chocolate ;
+    color:rgb(210, 30, 60) ;
     position: relative;
+}
+
+#close{
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    font-weight: 500;
+    color: darkgray;
+    cursor: pointer;
+}
+
+.user_data{
+    font-weight: 600;
+    color: rgb(98, 0, 255);
+    font-size: 2.1rem;
+    text-align: center;
 }

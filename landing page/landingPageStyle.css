@@ -33,8 +33,12 @@ p{
 #Play-With-us{
     border-radius: 1mm;
     margin: 3rem calc(50% - 5rem);
-    height: 2rem;
+    font-size: 1.5rem;
+    height: 3rem;
     width: 10rem;
+    background-color: rgb(17, 192, 192);
+    color: #fff;
+    cursor: pointer;
 }
 
 @media only screen and ( min-width: 1024px ) {
