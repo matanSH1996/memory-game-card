@@ -76,11 +76,11 @@ function startTimer(duration, display) {
     
       document.getElementById("timer").innerHTML = minutes + ":" + seconds;
 
-      if (++timer < 0) {
+      if (startTimer = ++timer < 0) {
           timer = duration;
       }
   }, 1000);
-}
+} 
 
 window.onload = function () {
   let fiveMinutes = 60 * 0,

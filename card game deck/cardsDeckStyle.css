@@ -52,11 +52,11 @@ main{
 }
 
 #popup #popup-child{
-    width: 35.7rem;
+    width: 50rem;
     height: 35.7rem;
     position: fixed;
     top: calc(50% - 17.8rem);
-    left: calc(50% - 17.8rem);
+    left: calc(50% - 24rem);
     text-align: center;
     z-index: 1;
     background-image: url("https://media.istockphoto.com/photos/royal-flush-and-poker-chips-picture-id1182872570?k=20&m=1182872570&s=612x612&w=0&h=d945CSQrpj2v1Wqy2XZVBL0TqalcNKaiK3FQXYb7vBs=");
@@ -82,18 +82,13 @@ main{
     height: 3.6rem;
     font-size: 2rem;
     position: fixed;
-    right: 42%;
-    top: 22rem;
+    right: 39%;
+    top: 70%;
     cursor: pointer;
 }
 
 #popup{
     display: none;
-}
-
-.user{
-    color:rgb(210, 30, 60) ;
-    position: relative;
 }
 
 #close{
@@ -114,3 +109,23 @@ main{
     font-size: 2.1rem;
     text-align: center;
 }
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    position: fixed;
+    top: 20%;
+    left: 40%;
+    background-color: rgb(210, 30, 60);
+    color: #000;
+  }
+  
+  td, th {
+    border: 2.5px solid #000;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
