@@ -63,38 +63,77 @@ window.addEventListener('load',() => {
 
 } )
 
-function startTimer(duration, display) {
-  let timer = duration, minutes, seconds;
-  setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
-
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-
-      display.textContent = minutes + ":" + seconds;
-    
-      document.getElementById("timer").innerHTML = minutes + ":" + seconds;
-
-      if (startTimer = ++timer < 0) {
-          timer = duration;
-      }
-  }, 1000);
-} 
-
 window.onload = function () {
-  let fiveMinutes = 60 * 0,
-      display = document.querySelector('#time');
-  startTimer(fiveMinutes, display);
+  Interval = setInterval(startTimer, 1000);
+}
+
+var minutes = 00; 
+var seconds = 00; 
+var appendseconds = document.getElementById("seconds")
+var appendminutes = document.getElementById("minutes")
+var buttonStart = document.getElementById('button-start');
+var buttonStop = document.getElementById('button-stop');
+var buttonReset = document.getElementById('button-reset');
+var Interval ;
+
+buttonStart.onclick = function() {
+  
+  clearInterval(Interval);
+  Interval = setInterval(startTimer, 1000);
+}
+
+  buttonStop.onclick = function() {
+    clearInterval(Interval);
+}
+
+
+buttonReset.onclick = function() {
+  clearInterval(Interval);
+    seconds = "00";
+    minutes = "00";
+  appendseconds.innerHTML = seconds;
+  appendminutes.innerHTML = minutes;
+  // startTimer()
+  Interval = setInterval(startTimer, 1000);
 };
+
+
+
+function startTimer () {
+  seconds++; 
+  
+  if (seconds < 10){
+    appendseconds.innerHTML = "0" + seconds;
+  }
+  
+  if (seconds > 9){
+    appendseconds.innerHTML = seconds;
+    
+  } 
+  
+  if (seconds > 59) {
+    console.log("minutes");
+    minutes++;
+    appendminutes.innerHTML = "0" + minutes;
+    seconds = 0;
+    appendseconds.innerHTML = "0" + 0;
+  }
+ 
+}
 
 function myFunction() {
   let popup = document.getElementById("popup");
   if(score == 6){
+    if(minutes < 9) {
+      minutes = "0" + minutes
+    };
+    localStorage.setItem("minutes", minutes);
+    localStorage.setItem("seconds", seconds);
+    clearInterval(Interval);
     popup.style.display = 'block';
     document.getElementById("name_of_user").innerHTML = localStorage.getItem("username");
     document.getElementById("mail_of_user").innerHTML = localStorage.getItem("usermail");
-    document.getElementById("time").innerHTML = localStorage.getItem("timer");
+     document.getElementById("time_of_user").innerHTML = localStorage.getItem("minutes")+':'+localStorage.getItem("seconds");
     let closePopup = document.querySelector("#close")
     closePopup.addEventListener('click', (event) => {
     popup.style.display = 'none';
