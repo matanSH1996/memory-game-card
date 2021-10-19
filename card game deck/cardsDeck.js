@@ -31,6 +31,7 @@ function game () {
           checkArr[i].classList.toggle('isFlipped');
           checkArr[j].classList.toggle('isFlipped');
           score ++
+          document.getElementById('score').innerHTML = score;
           flag = 0
         }
       } else nope ++
@@ -127,13 +128,15 @@ function myFunction() {
     if(minutes < 9) {
       minutes = "0" + minutes
     };
-    localStorage.setItem("minutes", minutes);
-    localStorage.setItem("seconds", seconds);
+    if(seconds < 9) {
+      seconds = "0" + seconds
+    };
     clearInterval(Interval);
     popup.style.display = 'block';
     document.getElementById("name_of_user").innerHTML = localStorage.getItem("username");
     document.getElementById("mail_of_user").innerHTML = localStorage.getItem("usermail");
-     document.getElementById("time_of_user").innerHTML = localStorage.getItem("minutes")+':'+localStorage.getItem("seconds");
+    document.getElementById("time_of_user").innerHTML = minutes + ':' + seconds;
+    document.getElementById("score_of_user").innerHTML = score;
     let closePopup = document.querySelector("#close")
     closePopup.addEventListener('click', (event) => {
     popup.style.display = 'none';
