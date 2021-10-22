@@ -1,7 +1,7 @@
 const cards = document.getElementsByClassName('cards-container');
 const test = Array.from(cards)
 let flag = 0;
-let score = 0
+let score = 0;
 let nope = 0;
 test.forEach(item => {
   item.addEventListener('click', eventParams)
@@ -34,7 +34,7 @@ function game () {
           document.getElementById('score').innerHTML = score;
           flag = 0
         }
-      } else nope ++
+      } else nope++
     }
     if(nope == 1) {
       setTimeout(() => {
@@ -68,14 +68,14 @@ window.onload = function () {
   Interval = setInterval(startTimer, 1000);
 }
 
-var minutes = 00; 
-var seconds = 00; 
-var appendseconds = document.getElementById("seconds")
-var appendminutes = document.getElementById("minutes")
-var buttonStart = document.getElementById('button-start');
-var buttonStop = document.getElementById('button-stop');
-var buttonReset = document.getElementById('button-reset');
-var Interval ;
+let minutes = 00; 
+let seconds = 00; 
+let appendseconds = document.getElementById("seconds")
+let appendminutes = document.getElementById("minutes")
+let buttonStart = document.getElementById('button-start');
+let buttonStop = document.getElementById('button-stop');
+let buttonReset = document.getElementById('button-reset');
+let Interval ;
 
 buttonStart.onclick = function() {
   
@@ -113,7 +113,6 @@ function startTimer () {
   } 
   
   if (seconds > 59) {
-    console.log("minutes");
     minutes++;
     appendminutes.innerHTML = "0" + minutes;
     seconds = 0;
@@ -128,18 +127,41 @@ function myFunction() {
     if(minutes < 9) {
       minutes = "0" + minutes
     };
-    if(seconds < 9) {
-      seconds = "0" + seconds
-    };
+    localStorage.setItem("minutes", minutes);
+    localStorage.setItem("seconds", seconds);
     clearInterval(Interval);
     popup.style.display = 'block';
     document.getElementById("name_of_user").innerHTML = localStorage.getItem("username");
     document.getElementById("mail_of_user").innerHTML = localStorage.getItem("usermail");
-    document.getElementById("time_of_user").innerHTML = minutes + ':' + seconds;
-    document.getElementById("score_of_user").innerHTML = score;
+     document.getElementById("time_of_user").innerHTML = localStorage.getItem("minutes")+':'+localStorage.getItem("seconds");
+     document.getElementById("name_user").innerHTML = localStorage.getItem("username");
+     document.getElementById("mail_user").innerHTML = localStorage.getItem("usermail");
+     document.getElementById("score_of_user").innerHTML = score;
     let closePopup = document.querySelector("#close")
     closePopup.addEventListener('click', (event) => {
     popup.style.display = 'none';
     })
   }
+
+let user_value = [
+    document.getElementById("name_of_user").value = localStorage.getItem("username")
+    ,document.getElementById("mail_of_user").value = localStorage.getItem("usermail")
+    ,document.getElementById("time_of_user").value = localStorage.getItem("minutes")+':'+localStorage.getItem("seconds")
+    , document.getElementById("name_user").value = localStorage.getItem("username")
+    ,document.getElementById("mail_user").value = localStorage.getItem("usermail")
+    ,document.getElementById("score_of_user").value = score
+];
+  const myvar = Array.from(user_value);
+
+  let whatsapp = document.getElementById('url_whatsapp');
+  whatsapp.addEventListener('click',function(){
+    let wts_shareUrl = "whatsapp://send?text=" + myvar ;
+    window.open(wts_shareUrl);
+  });
+
+let email = document.getElementById('url_mail');
+email.addEventListener('click', function(){
+  let email_url = "mailto:?body=" + myvar;
+  window.open(email_url);
+  });
 };
