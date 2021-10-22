@@ -1,0 +1,54 @@
+body{
+    margin: 0 auto;
+}
+#img{
+    width: 100%;
+    height: 100%;
+}
+
+#button{
+    background-color: chocolate;
+    color: #04a2ad;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    position: fixed;
+    left: 46%;
+    top: 400px;
+}
+
+#title{
+    position: fixed;
+    color: #e29c19;
+    text-align: center;
+    justify-content: center;
+    font-size: 60px;
+    left: 50px;
+    right: 60px;
+    top: 10px;
+}
+
+#span{
+    position: fixed;
+    left: 400px;
+    top: 280px;
+    font-size: 60px;
+    color: #04a2ad;
+}
+
+.user{
+    position: fixed;
+    left: 385px;
+    top: 120px;
+    color: #04a2ad;
+    font-size: 60px;
+}
+
+#email{
+    position: fixed;
+    left: 385px;
+    top: 175px;
+    color: #04a2ad;
+    font-size: 60px;
+}
