@@ -1,4 +1,5 @@
 const cards = document.getElementsByClassName('cards-container');
+shuffle();
 const test = Array.from(cards)
 let flag = 0;
 let score = 0;
@@ -14,6 +15,29 @@ function eventParams (event) {
   fliped.data
 
   game();
+}
+
+function restart(){
+
+  for (let card of cards) {
+    if (card.classList.contains('flippedCard')){
+      card.classList.toggle('flippedCard');
+      card.addEventListener('click', eventParams);
+    }
+
+    if (card.classList.contains('isFlipped')){
+      card.classList.toggle('isFlipped');
+      card.addEventListener('click', eventParams);
+    }
+
+  setTimeout(() => {shuffle()}, 1000);  
+  score =0;
+  document.getElementById('score').innerHTML = score;
+ 
+  clearInterval(Interval);
+  setTimeout(() => {resetTimer()}, 1000); 
+   
+  }
 }
 
 function game () {
@@ -88,15 +112,15 @@ buttonStart.onclick = function() {
 }
 
 
-buttonReset.onclick = function() {
+function resetTimer() {
   clearInterval(Interval);
     seconds = "00";
     minutes = "00";
   appendseconds.innerHTML = seconds;
   appendminutes.innerHTML = minutes;
-  // startTimer()
   Interval = setInterval(startTimer, 1000);
 };
+
 
 
 
@@ -116,7 +140,7 @@ function startTimer () {
     minutes++;
     appendminutes.innerHTML = "0" + minutes;
     seconds = 0;
-    appendseconds.innerHTML = "0" + 0;
+    appendseconds.innerHTML = "0" + seconds;
   }
  
 }
@@ -165,3 +189,10 @@ email.addEventListener('click', function(){
   window.open(email_url);
   });
 };
+
+function shuffle(){
+  for (let card of cards) {
+    let randomindex = Math.floor(Math.random() * cards.length);
+    card.style.order = randomindex;
+  }
+}
