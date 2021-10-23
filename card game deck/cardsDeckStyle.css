@@ -24,7 +24,7 @@ body{
     width: 4rem;
     height: 8rem;
     transform-style: preserve-3d;
-    transition: 1500ms;
+    transition: 1s;
 }
 
 .cards-container.flippedCard {
