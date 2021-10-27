@@ -17,27 +17,22 @@ function eventParams (event) {
   game();
 }
 
-function restart(){
+window.addEventListener('load',() => {
 
-  for (let card of cards) {
-    if (card.classList.contains('flippedCard')){
-      card.classList.toggle('flippedCard');
-      card.addEventListener('click', eventParams);
-    }
+  const params = (new URL(document.location)).searchParams;
+  const name = params.get('nameofuser');
+  const mail = params.get('email');
 
-    if (card.classList.contains('isFlipped')){
-      card.classList.toggle('isFlipped');
-      card.addEventListener('click', eventParams);
-    }
+  document.getElementById('writename').innerHTML = name;
+  document.getElementById('writemail').innerHTML = mail;
+  
+  localStorage.setItem("username", name);
+  localStorage.setItem("usermail", mail);
 
-  setTimeout(() => {shuffle()}, 1000);  
-  score =0;
-  document.getElementById('score').innerHTML = score;
- 
-  clearInterval(Interval);
-  setTimeout(() => {resetTimer()}, 1000); 
-   
-  }
+} )
+
+window.onload = function () {
+  Interval = setInterval(startTimer, 1000);
 }
 
 function game () {
@@ -73,25 +68,6 @@ function game () {
   myFunction()
 }
 
-
-window.addEventListener('load',() => {
-
-  const params = (new URL(document.location)).searchParams;
-  const name = params.get('nameofuser');
-  const mail = params.get('email');
-
-  document.getElementById('writename').innerHTML = name;
-  document.getElementById('writemail').innerHTML = mail;
-  
-  localStorage.setItem("username", name);
-  localStorage.setItem("usermail", mail);
-
-} )
-
-window.onload = function () {
-  Interval = setInterval(startTimer, 1000);
-}
-
 let minutes = 00; 
 let seconds = 00; 
 let appendseconds = document.getElementById("seconds")
@@ -111,19 +87,6 @@ buttonStart.onclick = function() {
     clearInterval(Interval);
 }
 
-
-function resetTimer() {
-  clearInterval(Interval);
-    seconds = "00";
-    minutes = "00";
-  appendseconds.innerHTML = seconds;
-  appendminutes.innerHTML = minutes;
-  Interval = setInterval(startTimer, 1000);
-};
-
-
-
-
 function startTimer () {
   seconds++; 
   
@@ -142,7 +105,46 @@ function startTimer () {
     seconds = 0;
     appendseconds.innerHTML = "0" + seconds;
   }
+}
+
+function resetTimer() {
+  clearInterval(Interval);
+    seconds = "00";
+    minutes = "00";
+    appendseconds.innerHTML = seconds;
+    appendminutes.innerHTML = minutes;
+    Interval = setInterval(startTimer, 1000);
+};
+
+
+function restart(){
+
+  for (let card of cards) {
+    if (card.classList.contains('flippedCard')){
+      card.classList.toggle('flippedCard');
+      card.addEventListener('click', eventParams);
+    }
+
+    if (card.classList.contains('isFlipped')){
+      card.classList.toggle('isFlipped');
+      card.addEventListener('click', eventParams);
+    }
+
+  setTimeout(() => {shuffle()}, 1000);  
+  score =0;
+  document.getElementById('score').innerHTML = score;
  
+  clearInterval(Interval);
+  setTimeout(() => {resetTimer()}, 1000); 
+   
+  }
+}
+
+function shuffle(){
+  for (let card of cards) {
+    let randomindex = Math.floor(Math.random() * cards.length);
+    card.style.order = randomindex;
+  }
 }
 
 function myFunction() {
@@ -164,35 +166,33 @@ function myFunction() {
     let closePopup = document.querySelector("#close")
     closePopup.addEventListener('click', (event) => {
     popup.style.display = 'none';
-    })
-  }
+  })
 
 let user_value = [
-    document.getElementById("name_of_user").value = localStorage.getItem("username")
-    ,document.getElementById("mail_of_user").value = localStorage.getItem("usermail")
-    ,document.getElementById("time_of_user").value = localStorage.getItem("minutes")+':'+localStorage.getItem("seconds")
-    , document.getElementById("name_user").value = localStorage.getItem("username")
-    ,document.getElementById("mail_user").value = localStorage.getItem("usermail")
-    ,document.getElementById("score_of_user").value = score
+  document.getElementById("name_of_user").value = localStorage.getItem("username"),
+  document.getElementById("mail_of_user").value = localStorage.getItem("usermail"),
+  document.getElementById("time_of_user").value = localStorage.getItem("minutes")+':'+localStorage.getItem("seconds"),
+  document.getElementById("name_user").value = localStorage.getItem("username"),
+  document.getElementById("mail_user").value = localStorage.getItem("usermail"),
+  document.getElementById("score_of_user").value = score
 ];
-  const myvar = Array.from(user_value);
+
+
+const myvar = Array.from(user_value);
 
   let whatsapp = document.getElementById('url_whatsapp');
-  whatsapp.addEventListener('click',function(){
-    let wts_shareUrl = "whatsapp://send?text=" + myvar ;
-    window.open(wts_shareUrl);
-  });
+  whatsapp.addEventListener('click',function(event){
+  let wts_shareUrl = "whatsapp://send?text=" + myvar ;
+  window.open(wts_shareUrl);
+  event.preventDefault(whatsapp);
+});
+
 
 let email = document.getElementById('url_mail');
-email.addEventListener('click', function(){
+  email.addEventListener('click', function(event){
   let email_url = "mailto:?body=" + myvar;
   window.open(email_url);
-  });
-};
-
-function shuffle(){
-  for (let card of cards) {
-    let randomindex = Math.floor(Math.random() * cards.length);
-    card.style.order = randomindex;
-  }
+  event.preventDefault(email);
+    });
+  };
 }

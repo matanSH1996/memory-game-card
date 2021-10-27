@@ -25,6 +25,7 @@ body{
     height: 8rem;
     transform-style: preserve-3d;
     transition: 1s;
+    cursor: pointer;
 }
 
 .cards-container.flippedCard {
@@ -56,7 +57,7 @@ body{
 
 #popup #popup-child {
     width: 25rem;
-    height: 30.7rem;
+    height: 33rem;
     position: fixed;
     top: calc(42% - 13.8rem);
     left: calc(54% - 14rem);
@@ -85,8 +86,8 @@ body{
     height: 2.5rem;
     font-size: 1.5rem;
     position: fixed;
-    top: calc(45% - -7.3rem);
-    left: calc(51% - 4.8rem);
+    left: 27%;
+    top: 67%;
     cursor: pointer;
 }
 
@@ -113,7 +114,7 @@ body{
     text-align: center;
 }
 
-table {
+#table1 {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     position: fixed;
@@ -128,7 +129,7 @@ table {
 td, th {
     border: 2.5px solid #000;
     text-align: center;
-    padding: 3px;
+    padding: 3.5px;
 }
   
 tr:nth-child(even) {
@@ -144,6 +145,7 @@ tr:nth-child(even) {
     color: #fff;
     font-size: 1.5rem;
     border-radius: 0.5rem;
+    cursor: pointer;
 }
 
 #button-stop{
@@ -151,6 +153,7 @@ tr:nth-child(even) {
     color: #fff;
     font-size: 1.5rem;
     border-radius: 0.5rem;
+    cursor: pointer;
 }
 
 #button-reset{
@@ -158,9 +161,10 @@ tr:nth-child(even) {
     color: #fff;
     font-size: 1.5rem;
     border-radius: 0.5rem;
+    cursor: pointer;
 }
 
-.table {
+#table2 {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     position: fixed;
@@ -178,8 +182,8 @@ tr:nth-child(even) {
     width: 4rem;
     height: 4rem;
     bottom: 2.8rem;
-    top: calc(48% - -9.9rem);
-    left: calc(34% - 0rem);
+    left: 29%;
+    top: 76%;
     background-color: #25d366;
     border-radius: 3.5rem;
     text-align: center;
@@ -202,8 +206,8 @@ tr:nth-child(even) {
     width: 4rem;
     height: 4rem;
     bottom: 2.8rem;
-    top: calc(43% - -12rem);
-    left: calc(49% - -1rem);
+    left: 52%;
+    top: 76%;
     background-color: dodgerblue;
     border-radius: 3.5rem;
     text-align: center;
@@ -238,31 +242,31 @@ tr:nth-child(even) {
     left: calc(49% - 4rem);
 }
 
-table {
-    top: 5%;
-    margin: 3.5rem;
+#table1 {
+    margin-left: 3rem;
+    margin-top: 2rem;
 }
   
 td, th {
     padding: 1rem;
 }
   
-.table {
-    top: -17%;
-    right: 19.2rem;
+#table2 {
+    margin-left: 25rem;
+    margin-top: 2rem;
 }
 
 .whatsapp_float {
     width: 4rem;
     height: 4.3rem;   
     left: 46%;
-    top: 32rem;
+    top: 76%;
 }
 
 .email {
     height: 4.3rem;
-    top: calc(48% - -12rem);
-    left: calc(52% - -1rem);
+    left: 53%;
+    top: 76%;
 }
 
 .fa-envelope-square {
