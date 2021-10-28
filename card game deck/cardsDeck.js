@@ -1,14 +1,16 @@
 const cards = document.getElementsByClassName('cards-container');
-shuffle();
 const test = Array.from(cards)
 let flag = 0;
 let score = 0;
 let nope = 0;
+let lookbord = false;
+shuffle();
 test.forEach(item => {
   item.addEventListener('click', eventParams)
 })
 
 function eventParams (event) {
+  if (lookbord) return;
   let fliped = event.target.parentElement
   fliped.classList.toggle('flippedCard');
   fliped.classList.toggle('isFlipped');
@@ -55,16 +57,18 @@ function game () {
         }
       } else nope++
     }
-    if(nope == 1) {
-      setTimeout(() => {
-        checkArr.forEach(item => {
-          item.classList.toggle('flippedCard')
-          item.classList.toggle('isFlipped');
-        })
-      }, 1000);
-      nope = 0
+      if(nope == 1) {
+        lookbord = true;
+        setTimeout(() => {
+          checkArr.forEach(item => {
+            item.classList.toggle('flippedCard')
+            item.classList.toggle('isFlipped');
+          })
+          lookbord = false;
+        }, 1000);
+        nope = 0
+      }
     }
-  }
   myFunction()
 }
 
@@ -116,6 +120,7 @@ function resetTimer() {
     Interval = setInterval(startTimer, 1000);
 };
 
+buttonReset.addEventListener('click', restart);
 
 function restart(){
 

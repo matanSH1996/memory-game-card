@@ -10,6 +10,11 @@ body{
     align-content: center;  
 }
 
+#title{
+    color:rgb(184, 184, 196);
+    text-align: center;
+}
+
 section {
     position: relative;
     display: flex;
