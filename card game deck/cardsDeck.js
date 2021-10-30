@@ -60,7 +60,7 @@ function matchCheck (){
 
       resetBoard()  
       actionLock = false; 
-      }, 2000);
+      }, 1000);
   }
 }
 
