@@ -28,7 +28,7 @@ body{
     cursor: pointer;
 }
 
-.cards-container.flippedCard {
+.cards-container.flip {
     transform: rotateY(180deg);   
 }
 
