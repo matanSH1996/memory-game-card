@@ -3,14 +3,14 @@ const test = Array.from(cards)
 let flag = 0;
 let score = 0;
 let nope = 0;
-let lookbord = false;
+let lockgame = false;
 shuffle();
 test.forEach(item => {
   item.addEventListener('click', eventParams)
 })
 
 function eventParams (event) {
-  if (lookbord) return;
+  if (lockgame) return;
   let fliped = event.target.parentElement
   fliped.classList.toggle('flippedCard');
   fliped.classList.toggle('isFlipped');
@@ -58,13 +58,13 @@ function game () {
       } else nope++
     }
       if(nope == 1) {
-        lookbord = true;
+        lockgame = true;
         setTimeout(() => {
           checkArr.forEach(item => {
             item.classList.toggle('flippedCard')
             item.classList.toggle('isFlipped');
           })
-          lookbord = false;
+          lockgame = false;
         }, 1000);
         nope = 0
       }
@@ -72,8 +72,8 @@ function game () {
   myFunction()
 }
 
-let minutes = 00; 
-let seconds = 00; 
+let seconds = 0; 
+let minutes = 0; 
 let appendseconds = document.getElementById("seconds")
 let appendminutes = document.getElementById("minutes")
 let buttonStart = document.getElementById('button-start');
@@ -82,13 +82,12 @@ let buttonReset = document.getElementById('button-reset');
 let Interval ;
 
 buttonStart.onclick = function() {
-  
   clearInterval(Interval);
   Interval = setInterval(startTimer, 1000);
 }
 
-  buttonStop.onclick = function() {
-    clearInterval(Interval);
+buttonStop.onclick = function() {
+  clearInterval(Interval);
 }
 
 function startTimer () {
@@ -105,18 +104,25 @@ function startTimer () {
   
   if (seconds > 59) {
     minutes++;
-    appendminutes.innerHTML = "0" + minutes;
     seconds = 0;
-    appendseconds.innerHTML = "0" + seconds;
+    appendseconds.innerHTML = "00";
+  }
+   
+  if (minutes < 10){
+    appendminutes.innerHTML = "0" + minutes;
+  }
+
+  if(minutes > 9){
+    appendminutes.innerHTML = minutes
   }
 }
 
 function resetTimer() {
   clearInterval(Interval);
-    seconds = "00";
-    minutes = "00";
-    appendseconds.innerHTML = seconds;
-    appendminutes.innerHTML = minutes;
+    seconds = 0;
+    minutes = 0;
+    appendseconds.innerHTML = "00";
+    appendminutes.innerHTML = "00";
     Interval = setInterval(startTimer, 1000);
 };
 
