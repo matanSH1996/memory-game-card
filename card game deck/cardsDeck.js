@@ -1,23 +1,76 @@
-const cards = document.getElementsByClassName('cards-container');
-const test = Array.from(cards)
-let flag = 0;
-let score = 0;
-let nope = 0;
-let lockgame = false;
+let cardFlipped = false; //describes the state before the card is clicked and flipped
+let firstCard; //first card variable
+let secondCard; //second card variable
+let actionLock = false; //a variable which helps to "lock the board":(clicking on the same clicked card is not allow, clicking on more than 2 card is not allow)
+let score = 0; //the starting point of the score
+let card = document.querySelectorAll('.cards-container'); //brings the cards div's to the JS.
+const cards = Array.from(card); //an Array of cards (the divs)
 shuffle();
-test.forEach(item => {
-  item.addEventListener('click', eventParams)
-})
 
-function eventParams (event) {
-  if (lockgame) return;
-  let fliped = event.target.parentElement
-  fliped.classList.toggle('flippedCard');
-  fliped.classList.toggle('isFlipped');
-  fliped.data
 
-  game();
+function flippingCard(){
+  if (actionLock){return}
+  if (this === firstCard){return}
+  this.classList.toggle('flip')
+  
+  //check:
+  // console.log('ive been clicked')
+  // console.log(this)
+
+  if(!cardFlipped) {
+  
+      cardFlipped = true;  
+      firstCard = this
+
+  //check:
+  // console.log(cardFlipped)
+  // console.log(firstCard)
+  } else {
+      cardFlipped = false;  
+      secondCard = this;
+      matchCheck()
+  
+  //check:
+  // console.log(cardFlipped)
+  // console.log(secondCard)
+  // console.log(firstCard)
+  }
 }
+
+function matchCheck (){
+  if(firstCard.firstElementChild.dataset.cardtype === secondCard.firstElementChild.dataset.cardtype){
+      firstCard.removeEventListener('click', flippingCard)
+      secondCard.removeEventListener('click', flippingCard)
+      score ++;
+      document.getElementById('score').innerHTML = score;
+      if(score == 6){
+        myFunction()
+      }
+      
+      //check:
+      // console.log('cards are match');
+      resetBoard();
+  }else {
+      //check:
+      // console.log('no match');
+      actionLock = true;
+      setTimeout(() => {
+          firstCard.classList.remove('flip');
+          secondCard.classList.remove('flip');
+
+      resetBoard()  
+      actionLock = false; 
+      }, 2000);
+  }
+}
+
+function resetBoard(){
+  cardFlipped = false;
+  firstCard = undefined;
+  secondCard = undefined;
+}
+
+cards.forEach(card => card.addEventListener('click', flippingCard))
 
 window.addEventListener('load',() => {
 
@@ -35,41 +88,6 @@ window.addEventListener('load',() => {
 
 window.onload = function () {
   Interval = setInterval(startTimer, 1000);
-}
-
-function game () {
-  let check = document.getElementsByClassName('isFlipped')
-  let checkArr = Array.from(check)
-  for(let i = 0; i < checkArr.length; i++){
-    for(let j = i + 1; j < checkArr.length; j++){
-      if(checkArr[i].children[0].src == checkArr[j].children[0].src && checkArr[i].classList.contains('isFlipped') && checkArr[j].classList.contains('isFlipped'))  {
-        flag ++
-        console.log('yes')
-        if(flag == 1){
-          console.log(checkArr[i])
-          checkArr[i].removeEventListener('click', eventParams);
-          checkArr[j].removeEventListener('click', eventParams)
-          checkArr[i].classList.toggle('isFlipped');
-          checkArr[j].classList.toggle('isFlipped');
-          score ++
-          document.getElementById('score').innerHTML = score;
-          flag = 0
-        }
-      } else nope++
-    }
-      if(nope == 1) {
-        lockgame = true;
-        setTimeout(() => {
-          checkArr.forEach(item => {
-            item.classList.toggle('flippedCard')
-            item.classList.toggle('isFlipped');
-          })
-          lockgame = false;
-        }, 1000);
-        nope = 0
-      }
-    }
-  myFunction()
 }
 
 let seconds = 0; 
@@ -131,14 +149,9 @@ buttonReset.addEventListener('click', restart);
 function restart(){
 
   for (let card of cards) {
-    if (card.classList.contains('flippedCard')){
-      card.classList.toggle('flippedCard');
-      card.addEventListener('click', eventParams);
-    }
-
-    if (card.classList.contains('isFlipped')){
-      card.classList.toggle('isFlipped');
-      card.addEventListener('click', eventParams);
+    if (card.classList.contains('flip')){
+        card.classList.toggle('flip');
+        card.addEventListener('click', flippingCard);
     }
 
   setTimeout(() => {shuffle()}, 1000);  
