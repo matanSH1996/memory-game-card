@@ -174,8 +174,11 @@ function shuffle(){
 function myFunction() {
   let popup = document.getElementById("popup");
   if(score == 6){
-    if(minutes < 9) {
+    if(minutes < 10) {
       minutes = "0" + minutes
+    };
+    if(seconds < 10) {
+      seconds = "0" + seconds
     };
     localStorage.setItem("minutes", minutes);
     localStorage.setItem("seconds", seconds);
